@@ -1,23 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { Font } from 'expo';
+import styled from 'styled-components';
 import arciform from './assets/fonts/arciform.ttf';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ff6b81',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    fontFamily: 'arciform',
-    fontSize: 64,
-    color: '#fff',
-    textAlign: 'center',
-    margin: 10,
-  },
-});
+const Container = styled(View)`
+  flex: 1;
+  background-color: #ff6b81;
+  align-items: center;
+  justify-content: center;
+`;
+
+const StyledText = styled(Text)`
+  font-family: arciform;
+  font-size: 64px;
+  color: #fff;
+  text-align: center;
+  margin: 10px;
+`;
 
 export default class App extends React.Component {
   constructor(props) {
@@ -38,13 +38,13 @@ export default class App extends React.Component {
     const { fontLoaded } = this.state;
 
     return (
-      <View style={styles.container}>
+      <Container>
         {fontLoaded ? (
-          <Text style={styles.text}>
+          <StyledText>
             pomo
-          </Text>
+          </StyledText>
         ) : null}
-      </View>
+      </Container>
     );
   }
 }
