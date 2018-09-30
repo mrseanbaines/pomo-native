@@ -3,9 +3,13 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Font } from 'expo';
 
 export default class App extends React.Component {
-    state = {
-      fontLoaded: false
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      fontLoaded: false,
     };
+  }
 
   async componentDidMount() {
     await Font.loadAsync({
@@ -18,13 +22,11 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-  {
-    this.state.fontLoaded ? (
-      <Text style={styles.text}>
-        pomo
-      </Text>
-    ) : null
-  }
+        {this.state.fontLoaded ? (
+          <Text style={styles.text}>
+            pomo
+          </Text>
+        ) : null}
       </View>
     );
   }
@@ -42,6 +44,6 @@ const styles = StyleSheet.create({
     fontSize: 64,
     color: '#fff',
     textAlign: "center",
-    margin: 10
+    margin: 10,
   },
 });
