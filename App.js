@@ -1,6 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Font } from 'expo';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+} from 'react-native';
+import {
+  Font,
+  Notifications,
+} from 'expo';
 import arciform from './assets/fonts/arciform.ttf';
 
 const styles = StyleSheet.create({
@@ -20,6 +28,21 @@ const styles = StyleSheet.create({
 });
 
 export default class App extends React.Component {
+  static sendNotification() {
+    Notifications.presentLocalNotificationAsync({
+      title: 'This is an immediate notification',
+      body: 'surprise baby',
+      sound: true,
+    });
+
+    this.sendNotification = this.sendNotification.bind(this);
+    this.clearNotifications = this.clearNotifications.bind(this);
+  }
+
+  static clearNotifications() {
+    Notifications.dismissAllNotificationsAsync();
+  }
+
   constructor(props) {
     super(props);
 
@@ -44,6 +67,14 @@ export default class App extends React.Component {
             pomo
           </Text>
         ) : null}
+        <Button
+          title="Send Notification"
+          onPress={this.sendNotification}
+        />
+        <Button
+          title="Clear Notification"
+          onPress={this.clearNotifications}
+        />
       </View>
     );
   }
